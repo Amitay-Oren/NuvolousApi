@@ -49,3 +49,9 @@ Method: POST
 Purpose: Register a new user and provide access token
 Data Sent: JSON with email, first name, and passwords
 Data Received: Access token (JSON)
+
+
+API Route for Chatbot Interaction:
+
+Path: /api/chatbot
+Method: POST
