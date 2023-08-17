@@ -1,0 +1,51 @@
+routes.py (API Routes):
+
+Login Endpoint
+
+URL: /api/login
+Method: POST
+Purpose: Authenticate user and provide access token
+Data Sent: JSON with email and password
+Data Received: Access token (JSON)
+User Profile Endpoint
+
+URL: /api/profile
+Method: GET
+Purpose: Get user profile information
+Data Sent: None
+Data Received: JSON with user profile data (email, first name)
+Get Notes Endpoint
+
+URL: /api/notes
+Method: GET
+Purpose: Get user's notes
+Data Sent: None
+Data Received: JSON with list of notes (id, data, date)
+Create Note Endpoint
+
+URL: /api/notes
+Method: POST
+Purpose: Create a new note for the user
+Data Sent: JSON with note data
+Data Received: JSON with success message
+Submit Feedback Endpoint
+
+URL: /api/feedback
+Method: POST
+Purpose: Submit feedback from the user
+Data Sent: JSON with feedback content
+Data Received: JSON with success message
+auth.py (Authentication Routes):
+
+Login Endpoint
+URL: /api/login
+Method: POST
+Purpose: Authenticate user and provide access token
+Data Sent: JSON with email and password
+Data Received: Access token (JSON)
+Sign Up Endpoint
+URL: /api/sign-up
+Method: POST
+Purpose: Register a new user and provide access token
+Data Sent: JSON with email, first name, and passwords
+Data Received: Access token (JSON)
