@@ -4,6 +4,7 @@ from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identi
 from werkzeug.security import check_password_hash
 from website.models import User, Note, Feedback  # Import your User model
 from website import db  # Import your SQLAlchemy instance
+from . import web_app
 
 # Create a Blueprint for your API routes
 api = Blueprint('api', __name__)
@@ -99,3 +100,22 @@ def submit_feedback():
 def test():
 
     return jsonify('Test success'), 200
+
+
+
+
+@app.route('/api/chatbot/<string:bot_id>', methods=['POST'])
+def chatbot_interaction(bot_id):
+    input_text = request.json.get('input_text')
+    # You can use 'bot_id' here to interact with the specific bot
+    response = web_app.get_chat_response(input_text)
+    last_messages = web_app.get_last_messages()
+    return jsonify({"lastMessages": last_messages}), 200
+
+@api.route('/api/chatbot/<string:bot_id>', methods=['GET'])
+def get_bot_configuration(bot_id):
+    note = Note.query.filter_by(bot_id=bot_id, user_id=None).first()
+    if note:
+        return jsonify({"note": note.serialize()})  # You need to define the serialize method
+    else:
+        return jsonify({"error": "Invalid chatbot ID"}), 404
