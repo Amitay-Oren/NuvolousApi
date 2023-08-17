@@ -104,7 +104,7 @@ def test():
 
 
 
-@app.route('/api/chatbot/<string:bot_id>', methods=['POST'])
+@api.route('/api/chatbot/<string:bot_id>', methods=['POST'])
 def chatbot_interaction(bot_id):
     input_text = request.json.get('input_text')
     # You can use 'bot_id' here to interact with the specific bot
