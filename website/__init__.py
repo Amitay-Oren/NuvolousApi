@@ -4,8 +4,7 @@ from flask_login import LoginManager
 from flask_migrate import Migrate
 from flask_cors import CORS  # Import CORS
 from flask_jwt_extended import JWTManager
-
-
+from datetime import timedelta
 import os
 
 db = SQLAlchemy()
@@ -17,6 +16,7 @@ def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hjshjhdjah kjshkjdhjs'
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = timedelta(seconds=3600)
     db.init_app(app)
     migrate.init_app(app, db)
     jwt = JWTManager(app)
