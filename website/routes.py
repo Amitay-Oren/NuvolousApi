@@ -73,7 +73,7 @@ def create_note():
     db.session.commit()
 
     # Return success message as JSON
-    return jsonify(message='Note created successfully'), 201
+    return jsonify(note_id=new_note.id, message='Note created successfully', web_address=data), 201
 
 # Define a route for submitting feedback
 @api.route('/feedback', methods=['POST'])
