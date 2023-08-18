@@ -77,16 +77,14 @@ def create_note():
 
 # Define a route for submitting feedback
 @api.route('/feedback', methods=['POST'])
-@jwt_required()  # Requires a valid JWT token
 def submit_feedback():
     # Get the user's identity from the token
-    user_id = get_jwt_identity()
     
     # Get feedback content from the JSON request
     content = request.json.get('content')
 
     # Create new feedback and add it to the database
-    new_feedback = Feedback(user_id=user_id, content=content)
+    new_feedback = Feedback(content=content)
     db.session.add(new_feedback)
     db.session.commit()
 
