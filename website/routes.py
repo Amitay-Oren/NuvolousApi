@@ -75,21 +75,23 @@ def create_note():
     # Return success message as JSON
     return jsonify(note_id=new_note.id, message='Note created successfully', web_address=data), 201
 
-# Define a route for submitting feedback
 @api.route('/feedback', methods=['POST'])
 def submit_feedback():
-    # Get the user's identity from the token
-    
-    # Get feedback content from the JSON request
+    # Get feedback content and bot ID from the JSON request
     content = request.json.get('content')
+    bot_id = request.json.get('botID')  # Adjust to match the key in the frontend
+
+    if not content or not bot_id:
+        return jsonify(message='Content and botID are required'), 400
 
     # Create new feedback and add it to the database
-    new_feedback = Feedback(content=content)
+    new_feedback = Feedback(content=content, bot_id=bot_id)
     db.session.add(new_feedback)
     db.session.commit()
 
     # Return success message as JSON
     return jsonify(message='Feedback submitted successfully'), 201
+
 
 
 
